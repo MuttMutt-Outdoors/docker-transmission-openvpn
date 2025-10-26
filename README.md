@@ -76,6 +76,8 @@ $ podman run --privileged -d \
 version: '3.3'
 services:
     transmission-openvpn:
+        networks: 
+          - transmission_default
         cap_add:
             - NET_ADMIN
         volumes:
@@ -94,9 +96,10 @@ services:
         ports:
             - '9091:9091'
         image: haugene/transmission-openvpn
-        networks:
-          transmission_default:
-            enable_ipv6: false
+networks:
+  transmission_default:
+    name: transmission_default
+    enable_ipv6: false
 ```
 
 ### Docker version 2.x Compose
@@ -104,6 +107,8 @@ services:
 version: "2.0"
 services:
     transmission-openvpn:
+        networks: 
+          - transmission_default
         container_name: transmission
         cap_add:
             - NET_ADMIN
@@ -123,9 +128,10 @@ services:
         ports:
             - 9091:9091
         image: haugene/transmission-openvpn
-        networks:
-          transmission_default:
-            enable_ipv6: false
+networks:
+  transmission_default:
+    name: transmission_default
+    enable_ipv6: false
 ```
 
 ## Known issues
